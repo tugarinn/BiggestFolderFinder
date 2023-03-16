@@ -1,6 +1,5 @@
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Node {
 
@@ -8,13 +7,19 @@ public class Node {
     private final ArrayList<Node> children;
     private static final String[] sizeNames = new String[]{"b", "kb", "Mb", "Gb"};
 
+    private  long limit;
+
+    public long getLimit() {
+        return limit;
+    }
 
     private  int level  = 0;
 
     private long size;
 
-    public  Node(File folder) {
+    public  Node(File folder,long limit) {
         this.folder = folder;
+        this.limit = limit;
         children = new ArrayList<>();
     }
 
@@ -49,8 +54,18 @@ public class Node {
         String size = SizeCalculator.getHumanReadableSize(getSize());
         builder.append(folder.getName()).append(" - ").append(size).append("\n");
         for (Node child : children) {
-            builder.append("  ").append(child.toString());
+            if (child.getSize() < limit) continue;
+            builder.append(getLevel()).append(child);
         }
         return builder.toString();
+    }
+
+    public String getLevel() {
+        String indent = "";
+        for (int i = 0; i <= level; i++) {
+            String space = "  ";
+            indent = indent + space;
+        }
+        return indent;
     }
 }
