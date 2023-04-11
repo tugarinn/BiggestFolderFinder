@@ -20,7 +20,7 @@ public class ParametersBag {
             }
         }
         if (limit <= 0) {
-            throw new IllegalArgumentException("Лимит не указан или указан не верно");
+            throw new IllegalArgumentException("Лимит не указан или указан не верно!!");
         }
         File folder = new File(path);
         if(!folder.exists() || !folder.isDirectory()) {
