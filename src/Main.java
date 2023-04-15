@@ -8,7 +8,7 @@ public class Main {
 
         String folderPath = bag.getPath();
         long sizeLimit = bag.getLimit();
-        System.out.println("Hello");
+        System.out.println("Hello WORD");
 
         File file = new File(folderPath);
         Node root = new Node(file, sizeLimit);
